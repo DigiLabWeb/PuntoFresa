@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Punto Fresa · Carta</title>
+<meta name="description" content="Carta de Punto Fresa, postres y chocolatería boutique en Puebla. Fresas que se antojan. Detalles que se recuerdan.">
+<meta name="theme-color" content="#FBF3F1">
+<meta property="og:title" content="Punto Fresa · Carta">
+<meta property="og:description" content="Fresas que se antojan. Detalles que se recuerdan.">
+<meta property="og:image" content="img/poster390.jpg">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--vino:#8C1D2F;--vino-dk:#6E1524;--fresa:#B8313C;--palo:#F2D4D2;--blush:#FBF3F1;--choco:#3B2320;--texto2:#5A3E3A;--linea:#E6C4C4;--borde:#F0D6D4;--serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;--sans:'Montserrat','Helvetica Neue',Arial,sans-serif}
+*{box-sizing:border-box}
+html{background:var(--blush);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--blush);color:var(--choco);font-family:var(--sans)}
+a{color:var(--vino)}
+button{font-family:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+img{max-width:100%}
+.app{max-width:560px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column}
+.top{position:sticky;top:0;z-index:10;background:var(--blush);padding-top:env(safe-area-inset-top,0px)}
+.brand{display:flex;flex-direction:column;align-items:center;gap:6px;padding:22px 20px 14px}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:400;font-size:28px;line-height:1;letter-spacing:.06em;color:var(--vino)}
+.tag{font-size:9.5px;font-weight:500;letter-spacing:.26em;color:var(--vino)}
+.tabs{display:flex;gap:8px;padding:4px 16px 14px;border-bottom:1px solid var(--linea)}
+.tab{flex-grow:1;height:44px;border-radius:50px;font-size:13px;font-weight:600;letter-spacing:.03em;padding:0 10px;border:1px solid var(--vino);background:transparent;color:var(--vino)}
+.tab[aria-pressed="true"]{background:var(--vino);color:#fff}
+main{flex-grow:1;padding:22px 16px 120px;display:flex;flex-direction:column;gap:16px}
+.head{display:flex;flex-direction:column;gap:8px;padding:0 4px}
+h1{margin:0;font-family:var(--serif);font-weight:300;font-size:46px;line-height:.98;letter-spacing:-.01em;color:var(--vino)}
+.sub{margin:0;font-size:13.5px;line-height:1.5;letter-spacing:.02em}
+.sec{display:flex;flex-direction:column;gap:14px}
+.sec[hidden]{display:none}
+.label{font-size:10px;font-weight:600;letter-spacing:.22em;color:var(--vino)}
+.meta{font-size:11px;letter-spacing:.06em;color:var(--texto2)}
+.small{font-size:12px;line-height:1.45;letter-spacing:.015em;color:var(--texto2)}
+.card{background:#fff;border:1px solid var(--borde);border-radius:22px}
+.name{font-family:var(--serif);font-weight:500;color:var(--vino);line-height:1.05}
+.price{font-family:var(--serif);font-weight:500;color:var(--choco)}
+.desc{font-size:12.5px;line-height:1.45;letter-spacing:.015em;color:var(--texto2)}
+.kicker{font-size:9.5px;font-weight:600;letter-spacing:.22em;color:var(--fresa)}
+.btn-ghost{height:36px;padding:0 16px;border-radius:50px;border:1px solid var(--vino);background:transparent;color:var(--vino);font-size:12.5px;font-weight:600;letter-spacing:.03em}
+.btn-solid{height:40px;padding:0 18px;border-radius:50px;border:1px solid var(--vino);background:var(--vino);color:#fff;font-size:12.5px;font-weight:600;letter-spacing:.03em}
+.circ{width:34px;height:34px;border-radius:50%;border:1px solid var(--vino);font-size:18px;line-height:1;padding:0;background:transparent;color:var(--vino)}
+.circ.solid{background:var(--vino);color:#fff}
+.circ.sm{width:30px;height:30px;font-size:16px}
+.circ.add{width:36px;height:36px}
+.stepper{display:flex;align-items:center;gap:6px}
+.qty{min-width:16px;text-align:center;font-weight:600;font-size:14px;display:inline-block}
+.seg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:4px;background:var(--palo);border-radius:50px}
+.seg button{height:40px;border:0;border-radius:50px;font-size:12px;font-weight:600;letter-spacing:.02em;padding:0 8px;background:transparent;color:var(--vino)}
+.seg button[aria-pressed="true"]{background:var(--vino);color:#fff}
+.chips{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.chip{height:40px;border-radius:14px;font-size:12px;font-weight:600;padding:0 2px;border:1px solid var(--vino);background:#fff;color:var(--vino)}
+.chip[aria-pressed="true"]{background:var(--vino);color:#fff}
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.ph{position:relative;aspect-ratio:1;border-radius:18px;overflow:hidden;background:var(--blush)}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.ph .fade{transition:opacity .7s ease,transform 1.4s cubic-bezier(.2,.7,.2,1);opacity:0;transform:scale(1.08)}
+.ph .fade.on{opacity:1;transform:scale(1)}
+.ph.b .fade{transition-delay:120ms}
+.bigprice{font-family:var(--serif);font-weight:400;font-size:44px;line-height:1;color:var(--choco);display:inline-block}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.gifts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.carousel{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 18px 4px;scrollbar-width:none}
+.carousel::-webkit-scrollbar{display:none}
+.carousel>div{flex:0 0 68%;scroll-snap-align:start;aspect-ratio:1;border-radius:18px;overflow:hidden;background:var(--blush)}
+.carousel img{width:100%;height:100%;object-fit:cover;display:block}
+.social{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:4px}
+.social a{display:flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 12px;border-radius:50px;border:1px solid var(--vino);color:var(--vino);font-size:12.5px;font-weight:600;text-decoration:none;white-space:nowrap}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--blush);border-top:1px solid var(--linea);padding:12px 16px calc(18px + env(safe-area-inset-bottom,0px))}
+.bar-in{max-width:528px;margin:0 auto}
+.cta{display:flex;align-items:center;justify-content:center;height:52px;border-radius:50px;border:1px solid var(--vino);background:var(--vino);color:#fff;font-size:14px;font-weight:600;letter-spacing:.03em;text-decoration:none}
+.cart{display:flex;align-items:center;gap:12px}
+.cart .cta{flex-shrink:0;height:50px;padding:0 22px}
+.toast{position:fixed;left:50%;bottom:104px;z-index:30;max-width:86%;padding:10px 18px;border-radius:50px;background:var(--choco);color:var(--blush);font-size:12.5px;font-weight:500;letter-spacing:.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none;opacity:0;transform:translate(-50%,12px);transition:opacity .3s ease,transform .3s ease}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@keyframes pfUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes pfBump{0%{transform:scale(1)}40%{transform:scale(1.45)}100%{transform:scale(1)}}
+@keyframes pfSlide{from{opacity:0;transform:translateY(100%)}to{opacity:1;transform:none}}
+@keyframes pfFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.in{animation:pfUp .55s cubic-bezier(.2,.7,.2,1) both}
+.bump{animation:pfBump .32s ease}
+.slide{animation:pfSlide .38s cubic-bezier(.2,.7,.2,1) both}
+.gem{animation:pfFloat 3.2s ease-in-out infinite}
+.press{transition:transform .15s ease,background-color .2s ease,color .2s ease,border-color .2s ease}
+.press:active{transform:scale(.94)}
+.lift{transition:transform .25s ease,border-color .25s ease}
+.pimg{transition:transform .5s ease}
+.descbox{overflow:hidden;transition:max-height .35s ease}
+@media (hover:hover){
+.ghost:hover{background:var(--palo)}
+.solidh:hover{background:var(--vino-dk);border-color:var(--vino-dk)}
+.lift:hover{transform:translateY(-2px);border-color:#DDB0AE}
+.lift:hover .pimg{transform:scale(1.04)}
+.linkh:hover{color:var(--vino-dk)}
+}
+@supports (animation-timeline: view()){
+.reveal{animation:pfUp linear both;animation-timeline:view();animation-range:entry 0% entry 35%}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+
+<div class="top">
+<header class="brand">
+<div class="logo"><span>PUNTO</span><svg class="gem" width="13" height="13" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 1 L17 9 L9 17 L1 9 Z" fill="#8C1D2F"/></svg><span>FRESA</span></div>
+<div class="tag">POSTRES Y CHOCOLATERÍA BOUTIQUE</div>
+</header>
+<nav class="tabs" aria-label="Secciones de la carta">
+<button type="button" class="tab press ghost" data-tab="fresas" aria-pressed="true">Fresas</button>
+<button type="button" class="tab press ghost" data-tab="cafe" aria-pressed="false">Café</button>
+<button type="button" class="tab press ghost" data-tab="postres" aria-pressed="false">Postres</button>
+<button type="button" class="tab press ghost" data-tab="detalles" aria-pressed="false">Detalles</button>
+</nav>
+</div>
+
+<main id="main">
+<div class="head in" id="head">
+<h1 id="headline">Fresas que se antojan.</h1>
+<p class="sub" id="sub">Para compartir, para regalar o para disfrutar.</p>
+</div>
+
+<section class="sec" id="sec-fresas" data-sec="fresas">
+<div class="in" style="animation-delay:80ms;display:flex;flex-direction:column;align-items:center;gap:6px;margin:0 -8px">
+<div class="label">TODOS LOS DÍAS</div>
+<img src="img/poster390.jpg" alt="Vaso de fresas de 390 g con zarza, frambuesa, nuez, perlas de chocolate, brownie, chocolate fundido, crema batida y fresa fresca, desde $109" width="720" height="742" style="width:100%;height:auto;display:block">
+<div style="font-family:var(--serif);font-style:italic;font-weight:400;font-size:28px;line-height:1.1;color:var(--vino);text-align:center">Es hora de consentirse.</div>
+</div>
+<div class="in" style="animation-delay:180ms;display:flex;flex-direction:column;gap:8px">
+<div class="label" style="padding:0 4px">ELIGE TU TAMAÑO</div>
+<div class="seg">
+<button type="button" class="press" data-size="mini" aria-pressed="true">Mini · 200 g</button>
+<button type="button" class="press" data-size="full" aria-pressed="false">Full · 350 g</button>
+</div>
+<div class="small" style="padding:0 4px">Mini 200 g · Full 350 g + tapa globo</div>
+</div>
+<div id="flavors" style="display:flex;flex-direction:column;gap:14px"></div>
+</section>
+
+<section class="sec" id="sec-cafe" data-sec="cafe" hidden><div id="list-cafe" style="display:flex;flex-direction:column;gap:12px"></div></section>
+<section class="sec" id="sec-postres" data-sec="postres" hidden><div id="list-postres" style="display:flex;flex-direction:column;gap:12px"></div></section>
+
+<section class="sec" id="sec-detalles" data-sec="detalles" hidden>
+<div class="in" style="animation-delay:60ms;padding:18px;background:var(--palo);border-radius:25px;display:flex;flex-direction:column;gap:14px">
+<div class="row" style="align-items:baseline"><div class="label">RAMITOS DE FRESAS</div><div class="meta" id="ramo-pz"></div></div>
+<div class="pair"><div class="ph a" id="ramo-a"></div><div class="ph b" id="ramo-b"></div></div>
+<div class="row" style="align-items:flex-end"><div class="bigprice" id="ramo-price"></div><div id="ramo-ctl"></div></div>
+<div class="chips" id="ramo-chips"></div>
+<div class="small">Cualquiera de los diseños tiene el mismo costo dependiendo del número de pzas que desees.</div>
+</div>
+
+<div class="in card" style="animation-delay:120ms;padding:18px;border-radius:25px;display:flex;flex-direction:column;gap:14px">
+<div class="row" style="align-items:baseline"><div class="label">CAJITAS DE FRESAS</div><div class="meta" id="caja-pz"></div></div>
+<div class="pair">
+<div class="ph" style="background:var(--palo)"><img class="pimg" src="img/caja6b.jpg" alt="Cajita de fresas cubiertas junto a flores" loading="lazy"></div>
+<div class="ph" style="background:var(--palo)"><img class="pimg" src="img/caja9.jpg" alt="Cajita con 9 fresas cubiertas y frambuesas" loading="lazy"></div>
+</div>
+<div class="row" style="align-items:flex-end"><div class="bigprice" id="caja-price"></div><div id="caja-ctl"></div></div>
+<div class="chips" id="caja-chips"></div>
+</div>
+
+<div class="label" style="padding:6px 4px 0">DETALLES PARA REGALAR</div>
+<div class="gifts" id="gifts"></div>
+
+<div class="reveal" style="padding:18px 0;background:var(--palo);border-radius:25px;display:flex;flex-direction:column;gap:14px;overflow:hidden">
+<div style="display:flex;flex-direction:column;gap:6px;padding:0 18px">
+<div class="label">PASTELES PERSONALIZADOS</div>
+<div style="font-family:var(--serif);font-weight:400;font-size:28px;line-height:1.05;color:var(--choco)">Con una pizca de amor en cada detalle</div>
+</div>
+<div class="carousel">
+<div><img class="pimg" src="img/pastel21.jpg" alt="Pastel personalizado verde con cerezas" loading="lazy"></div>
+<div><img class="pimg" src="img/pastelteal.jpg" alt="Pastel personalizado turquesa con dibujo" loading="lazy"></div>
+<div><img class="pimg" src="img/pastellila.jpg" alt="Pastel personalizado en caja con listón lila" loading="lazy"></div>
+</div>
+<div style="padding:0 18px"><a class="cta press solidh" id="cake-link" target="_blank" rel="noopener" style="height:46px;font-size:13px">Cotizar por WhatsApp →</a></div>
+</div>
+</section>
+
+<div class="reveal" style="margin-top:8px;padding:18px 4px 0;border-top:1px solid var(--linea);display:flex;flex-direction:column;gap:10px;font-size:12px;line-height:1.5;letter-spacing:.015em;color:var(--texto2)">
+<div class="label">VISÍTANOS</div>
+<div>Blvd. Mártires 2 de octubre N° 802, local “A”, Colonia Anzures, Puebla</div>
+<div>Lunes a sábado, 11:00 a 19:00</div>
+<div class="social">
+<a class="press ghost" href="https://instagram.com/deta_llesconsabor" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="#8C1D2F" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="#8C1D2F" stroke-width="1.8"/><circle cx="17.3" cy="6.7" r="1.2" fill="#8C1D2F"/></svg><span>Instagram</span></a>
+<a class="press ghost" href="https://www.facebook.com/share/1C7TwwCFr9/?mibextid=wwXIfr" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="#8C1D2F" stroke-width="1.8"/><path d="M13.2 20.5v-6.8h2.2l.4-2.6h-2.6V9.5c0-.8.3-1.3 1.4-1.3h1.3V5.9c-.3 0-1-.1-1.9-.1-2 0-3.3 1.2-3.3 3.4v1.9H8.5v2.6h2.2v6.8" fill="#8C1D2F"/></svg><span>Facebook</span></a>
+</div>
+</div>
+</main>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="bar"><div class="bar-in" id="bar"></div></div>
+
+<script>
+(function () {
+  'use strict';
+  var WA = '522229077816';
+  var FLAVORS = [
+    { id: 'ganache', name: 'Ganache', desc: 'Fresas enteras, abundante chocolate oscuro derretido y zarzas', mini: 69, full: 139 },
+    { id: 'crema', name: 'Crema', desc: 'Crema batida, brownie en trozo, chocolate derretido, nuez y perlas de chocolate', mini: 59, full: 119 },
+    { id: 'brownie', name: 'Brownie', desc: 'Abundante brownie, crema de avellanas, perlas de chocolate, nuez y blueberries', mini: 64, full: 129 },
+    { id: 'crumble', name: 'Crumble', desc: 'Crema batida, chocolate derretido y crumble de almendra', mini: 54, full: 109 },
+    { id: 'cono', name: 'Cono', desc: 'Cono de galleta dulce, crema batida, chocolate derretido y nuez', mini: 39, full: null }
+  ];
+  var LISTS = {
+    cafe: [
+      { id: 'americano', name: 'Americano', price: 38, img: 'americano', desc: 'Americano preparado con café de especialidad 100% arábica, proceso lavado. Sabor limpio, cuerpo medio y notas con destellos de ciruela y frambuesa que lo hacen suave, brillante y aromático.' },
+      { id: 'praline', name: 'Praline latte', price: 72, img: 'praline', desc: 'Latte aterciopelado mezclado con praliné de almendra y caramelo, terminado con un crumble dorado que aporta textura crujiente. Equilibrado, dulce y reconfortante.' },
+      { id: 'snowberry', name: 'Snowberry Latte', price: 75, img: 'snowberry', desc: 'Latte frío con jarabe de fresa natural y chocolate blanco real. Cremoso, dulce y súper fresco.' },
+      { id: 'soda', name: 'Soda de fresa', price: 35, img: 'soda', desc: 'Una bebida fresca y burbujeante hecha con agua mineral y jarabe de fresa natural. Dulce, ligera y perfecta para refrescar tu momento.' }
+    ],
+    postres: [
+      { id: 'tarta', name: 'Tarta creme brulee', price: 85, img: 'tarta', desc: 'Un postre cremoso y delicado con streusel de almendra que aporta un toque crujiente. Se corona con frutos rojos frescos y se acompaña con una crema de café y whisky que equilibra dulzura y carácter.' },
+      { id: 'brownie-postre', name: 'Brownie', price: 74, img: 'brownie', desc: 'Brownie de chocolate oscuro, coronado con crema de café infusionada en whisky y fresa fresca. Texturas suaves, sabor profundo y un toque adulto y aromático.' }
+    ]
+  };
+  var GIFTS = [
+    { id: 'berry-blush', name: 'Berry Blush', price: 136, img: 'berryblush', desc: '5 pzas de fresas baby cubiertas en chocolate auténtico.' },
+    { id: 'rosa', name: 'Rosa de chocolate', price: 140, img: 'rosa', desc: '' },
+    { id: 'corazon', name: 'Corazón de chocolate', price: 126, img: 'corazon', desc: '' },
+    { id: 'osito', name: 'Osito de chocolate', price: 29, img: 'osito', desc: '' }
+  ];
+  var RAMOS = [[7, 251], [9, 323], [12, 430], [16, 574], [20, 717]];
+  var CAJAS = [[4, 118], [6, 177], [9, 265], [12, 354], [20, 509]];
+  var RAMO_IMGS = [
+    ['ramo1', 'Ramito de fresas en tonos lila con corazón de chocolate'],
+    ['ramomorado', 'Ramito de fresas en papel morado con zarzas'],
+    ['ramoblanco', 'Ramito de fresas con flores blancas y fucsia'],
+    ['ramoverde', 'Ramito de fresas en papel verde con flores rosas'],
+    ['ramo2', 'Ramito de fresas en tonos pastel'],
+    ['ramorosa', 'Ramito de fresas con alstroemerias y claveles rosas']
+  ];
+  var HEAD = {
+    fresas: ['Fresas que se antojan.', 'Para compartir, para regalar o para disfrutar.'],
+    cafe: ['Café y bebidas.', ''],
+    postres: ['Postres.', ''],
+    detalles: ['Detalles que se recuerdan.', 'Regalos para momentos especiales.']
+  };
+
+  var state = { tab: 'fresas', size: 'mini', cart: {}, ramo: 7, caja: 4 };
+  var catalog = {};
+  FLAVORS.forEach(function (f) {
+    catalog['v-' + f.id + '-mini'] = { label: 'Fresas ' + f.name + ' (Mini)', price: f.mini };
+    if (f.full) catalog['v-' + f.id + '-full'] = { label: 'Fresas ' + f.name + ' (Full)', price: f.full };
+  });
+  Object.keys(LISTS).forEach(function (k) { LISTS[k].forEach(function (it) { catalog[it.id] = { label: it.name, price: it.price }; }); });
+  GIFTS.forEach(function (g) { catalog[g.id] = { label: g.name, price: g.price }; });
+  RAMOS.forEach(function (r) { catalog['ramo-' + r[0]] = { label: 'Ramito de fresas (' + r[0] + ' pzas)', price: r[1] }; });
+  CAJAS.forEach(function (r) { catalog['caja-' + r[0]] = { label: 'Cajita de fresas (' + r[0] + ' pzas)', price: r[1] }; });
+
+  function el(tag, attrs, html) {
+    var e = document.createElement(tag);
+    if (attrs) Object.keys(attrs).forEach(function (k) {
+      if (k === 'class') e.className = attrs[k];
+      else if (k === 'style') e.style.cssText = attrs[k];
+      else e.setAttribute(k, attrs[k]);
+    });
+    if (html != null) e.innerHTML = html;
+    return e;
+  }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function replay(node, delay) {
+    node.classList.remove('in');
+    void node.offsetWidth;
+    if (delay != null) node.style.animationDelay = delay + 'ms';
+    node.classList.add('in');
+  }
+
+  // ---- toast
+  var toastEl = document.getElementById('toast'), toastT = null;
+  function toast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastT);
+    toastT = setTimeout(function () { toastEl.classList.remove('show'); }, 1600);
+  }
+
+  // ---- cart controls registry
+  var controls = [];
+  function controlFor(container, keyFn, labelFn, variant) {
+    var c = { container: container, keyFn: keyFn, labelFn: labelFn, variant: variant || 'default', last: null, lastKey: null };
+    controls.push(c);
+    return c;
+  }
+  function drawControl(c, force) {
+    var key = c.keyFn();
+    if (key === null) {
+      if (c.lastKey !== null || force) { c.container.innerHTML = '<div style="font-size:11px;letter-spacing:.08em;color:var(--texto2)">Solo en mini</div>'; }
+      c.lastKey = null; c.last = null; return;
+    }
+    var q = state.cart[key] || 0;
+    if (!force && key === c.lastKey && q === c.last) return;
+    var bump = key === c.lastKey && c.last !== null && q !== c.last;
+    c.lastKey = key; c.last = q;
+    var sm = c.variant === 'sm';
+    if (q > 0) {
+      c.container.innerHTML = '<div class="stepper">' +
+        '<button type="button" class="circ press ghost' + (sm ? ' sm' : '') + '" data-d="-1" aria-label="Quitar uno">−</button>' +
+        '<span class="qty' + (bump ? ' bump' : '') + '">' + q + '</span>' +
+        '<button type="button" class="circ solid press solidh' + (sm ? ' sm' : '') + '" data-d="1" aria-label="Agregar uno">+</button></div>';
+    } else if (sm) {
+      c.container.innerHTML = '<button type="button" class="circ add press ghost" data-d="1" aria-label="Agregar">+</button>';
+    } else if (c.variant === 'solid') {
+      c.container.innerHTML = '<button type="button" class="btn-solid press solidh" data-d="1">Agregar +</button>';
+    } else {
+      c.container.innerHTML = '<button type="button" class="btn-ghost press ghost" data-d="1">Agregar +</button>';
+    }
+    Array.prototype.forEach.call(c.container.querySelectorAll('[data-d]'), function (b) {
+      b.addEventListener('click', function () { change(c.keyFn(), +b.getAttribute('data-d'), c.labelFn()); });
+    });
+  }
+  function change(key, d, label) {
+    var n = (state.cart[key] || 0) + d;
+    if (n <= 0) delete state.cart[key]; else state.cart[key] = n;
+    toast((d > 0 ? 'Agregado · ' : 'Quitado · ') + label);
+    refreshCart();
+  }
+  function refreshCart() {
+    controls.forEach(function (c) { drawControl(c, false); });
+    drawBar();
+  }
+
+  // ---- flavors
+  var flavorRefs = [];
+  var flavorsBox = document.getElementById('flavors');
+  FLAVORS.forEach(function (f, i) {
+    var wrap = el('div', { class: 'reveal' });
+    var inner = el('div', { class: 'in', style: 'animation-delay:' + (220 + i * 70) + 'ms' });
+    var card = el('div', { class: 'card lift', style: 'padding:16px 16px 16px 18px;display:flex;gap:12px;align-items:center' },
+      '<div style="flex-grow:1;display:flex;flex-direction:column;gap:4px"><div class="kicker">FRESAS</div><div class="name" style="font-size:26px">' + esc(f.name) + '</div><div class="desc">' + esc(f.desc) + '</div></div>' +
+      '<div style="flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:8px"><div class="price" style="font-size:24px"></div><div class="ctl"></div></div>');
+    inner.appendChild(card); wrap.appendChild(inner); flavorsBox.appendChild(wrap);
+    var ref = { f: f, inner: inner, price: card.querySelector('.price') };
+    ref.ctl = controlFor(card.querySelector('.ctl'), function () {
+      var p = state.size === 'mini' ? f.mini : f.full;
+      return p === null ? null : 'v-' + f.id + '-' + state.size;
+    }, function () { return 'Fresas ' + f.name; });
+    flavorRefs.push(ref);
+  });
+  function drawFlavors() {
+    flavorRefs.forEach(function (r) {
+      var p = state.size === 'mini' ? r.f.mini : r.f.full;
+      r.price.textContent = p === null ? '—' : '$' + p;
+      drawControl(r.ctl, true);
+    });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-size]'), function (b) {
+    b.addEventListener('click', function () {
+      state.size = b.getAttribute('data-size');
+      Array.prototype.forEach.call(document.querySelectorAll('[data-size]'), function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      drawFlavors();
+    });
+  });
+
+  // ---- menu lists
+  var listItems = { cafe: [], postres: [] };
+  Object.keys(LISTS).forEach(function (k) {
+    var box = document.getElementById('list-' + k);
+    LISTS[k].forEach(function (it, i) {
+      var wrap = el('div', { class: 'reveal' });
+      var inner = el('div', { class: 'in', style: 'animation-delay:' + (220 + i * 70) + 'ms' });
+      var card = el('div', { class: 'card lift', style: 'padding:14px;display:flex;flex-direction:column;gap:10px' },
+        '<div style="display:flex;gap:14px;align-items:center">' +
+          '<div style="flex-shrink:0;width:84px;height:84px;border-radius:16px;overflow:hidden;background:var(--palo)"><img class="pimg" src="img/' + it.img + '.jpg" alt="' + esc(it.name) + '" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>' +
+          '<div style="flex-grow:1;display:flex;flex-direction:column;gap:4px"><div class="name" style="font-size:25px">' + esc(it.name) + '</div><div class="price" style="font-size:22px">$' + it.price + '</div></div>' +
+        '</div>' +
+        '<div class="desc descbox" style="max-height:36px">' + esc(it.desc) + '</div>' +
+        '<div class="row"><button type="button" class="more press linkh" aria-expanded="false" style="border:0;background:transparent;padding:8px 0;font-size:11px;font-weight:600;letter-spacing:.14em;color:var(--fresa)">VER MÁS</button><div class="ctl"></div></div>');
+      inner.appendChild(card); wrap.appendChild(inner); box.appendChild(wrap);
+      var more = card.querySelector('.more'), dbox = card.querySelector('.descbox');
+      more.addEventListener('click', function () {
+        var open = more.getAttribute('aria-expanded') !== 'true';
+        more.setAttribute('aria-expanded', String(open));
+        more.textContent = open ? 'VER MENOS' : 'VER MÁS';
+        dbox.style.maxHeight = open ? dbox.scrollHeight + 'px' : '36px';
+      });
+      var c = controlFor(card.querySelector('.ctl'), function () { return it.id; }, function () { return it.name; });
+      drawControl(c, true);
+      listItems[k].push(inner);
+    });
+  });
+
+  // ---- gifts
+  var giftsBox = document.getElementById('gifts');
+  var giftInners = [];
+  GIFTS.forEach(function (g, i) {
+    var wrap = el('div', { class: 'reveal' });
+    var inner = el('div', { class: 'in', style: 'height:100%;animation-delay:' + (360 + i * 70) + 'ms' });
+    var card = el('div', { class: 'card lift', style: 'height:100%;padding:10px 10px 14px;display:flex;flex-direction:column;gap:10px' },
+      '<div style="border-radius:16px;overflow:hidden;background:var(--palo);aspect-ratio:1"><img class="pimg" src="img/' + g.img + '.jpg" alt="' + esc(g.name) + '" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block"></div>' +
+      '<div style="display:flex;flex-direction:column;gap:4px;padding:0 4px"><div class="name" style="font-size:21px;line-height:1.08">' + esc(g.name) + '</div>' +
+      (g.desc ? '<div style="font-size:11.5px;line-height:1.4;letter-spacing:.015em;color:var(--texto2)">' + esc(g.desc) + '</div>' : '') + '</div>' +
+      '<div class="row" style="margin-top:auto;gap:8px;padding:0 4px"><div class="price" style="font-size:22px">$' + g.price + '</div><div class="ctl"></div></div>');
+    inner.appendChild(card); wrap.appendChild(inner); giftsBox.appendChild(wrap);
+    drawControl(controlFor(card.querySelector('.ctl'), function () { return g.id; }, function () { return g.name; }, 'sm'), true);
+    giftInners.push(inner);
+  });
+
+  // ---- ramos & cajas
+  var ramoA = document.getElementById('ramo-a'), ramoB = document.getElementById('ramo-b');
+  RAMO_IMGS.forEach(function (r) {
+    ramoA.appendChild(el('img', { class: 'fade', src: 'img/' + r[0] + '.jpg', alt: r[1], loading: 'lazy' }));
+    ramoB.appendChild(el('img', { class: 'fade', src: 'img/' + r[0] + '.jpg', alt: r[1], loading: 'lazy' }));
+  });
+  function picker(kind, rows) {
+    var chips = document.getElementById(kind + '-chips');
+    rows.forEach(function (r) {
+      var b = el('button', { type: 'button', class: 'chip press', 'aria-pressed': 'false' }, r[0] + ' pzas');
+      b.addEventListener('click', function () { state[kind] = r[0]; drawPicker(kind, rows); });
+      chips.appendChild(b);
+    });
+    var ctl = controlFor(document.getElementById(kind + '-ctl'),
+      function () { return kind + '-' + state[kind]; },
+      function () { return (kind === 'ramo' ? 'Ramito' : 'Cajita') + ' de fresas (' + state[kind] + ' pzas)'; },
+      kind === 'ramo' ? 'solid' : 'default');
+    return ctl;
+  }
+  var ramoCtl = picker('ramo', RAMOS), cajaCtl = picker('caja', CAJAS);
+  function drawPicker(kind, rows) {
+    var idx = 0;
+    rows.forEach(function (r, i) { if (r[0] === state[kind]) idx = i; });
+    var row = rows[idx];
+    var priceEl = document.getElementById(kind + '-price');
+    var txt = '$' + row[1];
+    if (priceEl.textContent && priceEl.textContent !== txt) { priceEl.classList.remove('bump'); void priceEl.offsetWidth; priceEl.classList.add('bump'); }
+    priceEl.textContent = txt;
+    document.getElementById(kind + '-pz').textContent = row[0] + ' piezas';
+    Array.prototype.forEach.call(document.getElementById(kind + '-chips').children, function (b, i) { b.setAttribute('aria-pressed', String(i === idx)); });
+    if (kind === 'ramo') {
+      var n = RAMO_IMGS.length;
+      Array.prototype.forEach.call(ramoA.children, function (im, i) { im.classList.toggle('on', i === idx % n); });
+      Array.prototype.forEach.call(ramoB.children, function (im, i) { im.classList.toggle('on', i === (idx + 1) % n); });
+    }
+    drawControl(kind === 'ramo' ? ramoCtl : cajaCtl, true);
+  }
+  drawPicker('ramo', RAMOS); drawPicker('caja', CAJAS);
+
+  // ---- cake link
+  document.getElementById('cake-link').href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent('Hola, me interesa un pastel personalizado.');
+  document.getElementById('cake-link').addEventListener('click', function () { toast('Abriendo WhatsApp…'); });
+
+  // ---- bottom bar
+  var bar = document.getElementById('bar'), barHadCart = null;
+  function drawBar() {
+    var count = 0, total = 0, lines = [];
+    Object.keys(state.cart).forEach(function (k) {
+      var c = catalog[k], q = state.cart[k];
+      if (!c) return;
+      count += q; total += c.price * q;
+      lines.push('• ' + q + ' × ' + c.label + ' — $' + (c.price * q));
+    });
+    var has = count > 0;
+    if (has) {
+      var msg = 'Hola, quiero hacer un pedido:\n' + lines.join('\n') + '\nTotal: $' + total;
+      var link = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(msg);
+      if (barHadCart !== true) {
+        bar.innerHTML = '<div class="cart slide"><div style="flex-grow:1;display:flex;flex-direction:column;gap:2px"><div class="label">TU PEDIDO</div>' +
+          '<div id="sum" style="font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.1;display:inline-block"></div>' +
+          '<button type="button" id="clear" class="linkh" style="align-self:flex-start;border:0;background:transparent;padding:2px 0;font-size:11px;letter-spacing:.08em;color:var(--texto2);text-decoration:underline">Vaciar</button></div>' +
+          '<a class="cta press solidh" id="send" target="_blank" rel="noopener">Enviar por WhatsApp →</a></div>';
+        document.getElementById('clear').addEventListener('click', function () { state.cart = {}; toast('Pedido vaciado'); refreshCart(); });
+        document.getElementById('send').addEventListener('click', function () { toast('Abriendo WhatsApp…'); });
+      }
+      var sum = document.getElementById('sum');
+      sum.textContent = count + (count === 1 ? ' producto' : ' productos') + ' · $' + total;
+      sum.classList.remove('bump'); void sum.offsetWidth; sum.classList.add('bump');
+      document.getElementById('send').href = link;
+    } else if (barHadCart !== false) {
+      bar.innerHTML = '<a class="cta press solidh" id="send0" href="https://wa.me/' + WA + '" target="_blank" rel="noopener">Pedir por WhatsApp · 222 907 78 16</a>';
+      document.getElementById('send0').addEventListener('click', function () { toast('Abriendo WhatsApp…'); });
+    }
+    barHadCart = has;
+  }
+
+  // ---- tabs
+  var headEl = document.getElementById('head'), h1 = document.getElementById('headline'), sub = document.getElementById('sub');
+  function showTab(t, first) {
+    state.tab = t;
+    Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-tab') === t)); });
+    Array.prototype.forEach.call(document.querySelectorAll('.sec'), function (s) { s.hidden = s.getAttribute('data-sec') !== t; });
+    h1.textContent = HEAD[t][0];
+    sub.textContent = HEAD[t][1];
+    sub.hidden = !HEAD[t][1];
+    if (!first) {
+      replay(headEl);
+      var sec = document.getElementById('sec-' + t);
+      Array.prototype.forEach.call(sec.querySelectorAll('.in'), function (n) { replay(n); });
+      window.scrollTo(0, 0);
+    }
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (b) {
+    b.addEventListener('click', function () { var t = b.getAttribute('data-tab'); if (t !== state.tab) showTab(t, false); });
+  });
+
+  drawFlavors();
+  drawBar();
+  showTab('fresas', true);
+})();
+</script>
+</body>
+</html>
