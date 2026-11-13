@@ -248,14 +248,35 @@ h1{margin:0;font-family:var(--serif);font-weight:300;font-size:46px;line-height:
 
   var state = { tab: 'fresas', size: 'mini', cart: {}, ramo: 7, caja: 4 };
   var catalog = {};
+  // label: used in toasts · sec/name/variant: used to build the WhatsApp message
   FLAVORS.forEach(function (f) {
-    catalog['v-' + f.id + '-mini'] = { label: 'Fresas ' + f.name + ' (Mini)', price: f.mini };
-    if (f.full) catalog['v-' + f.id + '-full'] = { label: 'Fresas ' + f.name + ' (Full)', price: f.full };
+    catalog['v-' + f.id + '-mini'] = { label: 'Fresas ' + f.name + ' (Mini)', sec: 'fresas', name: f.name, variant: 'Mini', price: f.mini };
+    if (f.full) catalog['v-' + f.id + '-full'] = { label: 'Fresas ' + f.name + ' (Full)', sec: 'fresas', name: f.name, variant: 'Full', price: f.full };
   });
-  Object.keys(LISTS).forEach(function (k) { LISTS[k].forEach(function (it) { catalog[it.id] = { label: it.name, price: it.price }; }); });
-  GIFTS.forEach(function (g) { catalog[g.id] = { label: g.name, price: g.price }; });
-  RAMOS.forEach(function (r) { catalog['ramo-' + r[0]] = { label: 'Ramito de fresas (' + r[0] + ' pzas)', price: r[1] }; });
-  CAJAS.forEach(function (r) { catalog['caja-' + r[0]] = { label: 'Cajita de fresas (' + r[0] + ' pzas)', price: r[1] }; });
+  Object.keys(LISTS).forEach(function (k) { LISTS[k].forEach(function (it) { catalog[it.id] = { label: it.name, sec: k, name: it.name, variant: '', price: it.price }; }); });
+  RAMOS.forEach(function (r) { catalog['ramo-' + r[0]] = { label: 'Ramito de fresas (' + r[0] + ' pzas)', sec: 'detalles', name: 'Ramito de fresas', variant: r[0] + ' pzas', price: r[1] }; });
+  CAJAS.forEach(function (r) { catalog['caja-' + r[0]] = { label: 'Cajita de fresas (' + r[0] + ' pzas)', sec: 'detalles', name: 'Cajita de fresas', variant: r[0] + ' pzas', price: r[1] }; });
+  GIFTS.forEach(function (g) { catalog[g.id] = { label: g.name, sec: 'detalles', name: g.name, variant: '', price: g.price }; });
+  var SECTIONS = [['fresas', 'Fresas en vaso'], ['cafe', 'Café y bebidas'], ['postres', 'Postres'], ['detalles', 'Detalles']];
+  function money(n) { return '$' + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+
+  // WhatsApp message: grouped by section, bold headings, italic sizes, separator and total
+  function buildMessage() {
+    var count = 0, total = 0, blocks = [];
+    SECTIONS.forEach(function (sec) {
+      var rows = [];
+      Object.keys(catalog).forEach(function (k) {
+        var c = catalog[k], q = state.cart[k];
+        if (!q || c.sec !== sec[0]) return;
+        count += q; total += c.price * q;
+        rows.push('• ' + q + ' × ' + c.name + (c.variant ? ' _(' + c.variant + ')_' : '') + ' — ' + money(c.price * q));
+      });
+      if (rows.length) blocks.push('*' + sec[1] + '*\n' + rows.join('\n'));
+    });
+    var text = '¡Hola! Quiero hacer un pedido 🍓\n\n' + blocks.join('\n\n') +
+      '\n\n━━━━━━━━━━\n*Total: ' + money(total) + '*\n_' + count + (count === 1 ? ' producto' : ' productos') + '_';
+    return { text: text, count: count, total: total };
+  }
 
   function el(tag, attrs, html) {
     var e = document.createElement(tag);
@@ -451,17 +472,10 @@ h1{margin:0;font-family:var(--serif);font-weight:300;font-size:46px;line-height:
   // ---- bottom bar
   var bar = document.getElementById('bar'), barHadCart = null;
   function drawBar() {
-    var count = 0, total = 0, lines = [];
-    Object.keys(state.cart).forEach(function (k) {
-      var c = catalog[k], q = state.cart[k];
-      if (!c) return;
-      count += q; total += c.price * q;
-      lines.push('• ' + q + ' × ' + c.label + ' — $' + (c.price * q));
-    });
+    var order = buildMessage(), count = order.count, total = order.total;
     var has = count > 0;
     if (has) {
-      var msg = 'Hola, quiero hacer un pedido:\n' + lines.join('\n') + '\nTotal: $' + total;
-      var link = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(msg);
+      var link = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(order.text);
       if (barHadCart !== true) {
         bar.innerHTML = '<div class="cart slide"><div style="flex-grow:1;display:flex;flex-direction:column;gap:2px"><div class="label">TU PEDIDO</div>' +
           '<div id="sum" style="font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.1;display:inline-block"></div>' +
@@ -471,7 +485,7 @@ h1{margin:0;font-family:var(--serif);font-weight:300;font-size:46px;line-height:
         document.getElementById('send').addEventListener('click', function () { toast('Abriendo WhatsApp…'); });
       }
       var sum = document.getElementById('sum');
-      sum.textContent = count + (count === 1 ? ' producto' : ' productos') + ' · $' + total;
+      sum.textContent = count + (count === 1 ? ' producto' : ' productos') + ' · ' + money(total);
       sum.classList.remove('bump'); void sum.offsetWidth; sum.classList.add('bump');
       document.getElementById('send').href = link;
     } else if (barHadCart !== false) {
